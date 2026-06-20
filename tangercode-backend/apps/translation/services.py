@@ -46,14 +46,8 @@ class TranslationService:
             return self._client
         if not self.provider:
             return None
-        import anthropic
-        api_key = self.provider.decrypted_api_key or settings.ANTHROPIC_API_KEY
-        if not api_key:
-            raise ValueError("No API key configured. Set ANTHROPIC_API_KEY in .env or configure an AI Provider.")
-        self._client = anthropic.Anthropic(
-            api_key=api_key,
-            base_url=self.provider.base_url or None,
-        )
+        from apps.translation.clients import get_provider_client
+        self._client = get_provider_client(self.provider)
         return self._client
 
     def translate(self, text, source_lang, target_lang, field_type="default",
@@ -81,15 +75,23 @@ class TranslationService:
             client = self._get_client()
             if not client:
                 raise ValueError("No AI provider configured.")
-            response = client.messages.create(
-                model=self.provider.model_name,
-                max_tokens=self.provider.max_tokens,
-                temperature=self.provider.temperature,
-                messages=[{"role": "user", "content": full_prompt}],
-            )
-            translated_text = response.content[0].text.strip()
-            input_tokens = response.usage.input_tokens
-            output_tokens = response.usage.output_tokens
+
+            if self.provider and self.provider.monthly_cost_limit:
+                current_month_cost = self._current_month_cost()
+                if current_month_cost >= float(self.provider.monthly_cost_limit):
+                    return {
+                        "translated_text": "",
+                        "tokens_used": 0,
+                        "cost_usd": 0,
+                        "duration_ms": 0,
+                        "status": "error",
+                        "error_message": f"Monthly cost limit reached (${current_month_cost:.2f} / ${float(self.provider.monthly_cost_limit):.2f})",
+                    }
+
+            result = client.translate(full_prompt)
+            translated_text = result["translated_text"]
+            input_tokens = result["input_tokens"]
+            output_tokens = result["output_tokens"]
             tokens_used = input_tokens + output_tokens
             cost_usd = self._estimate_cost(input_tokens, output_tokens)
             duration_ms = int((time.monotonic() - start) * 1000)
@@ -255,3 +257,16 @@ class TranslationService:
     @staticmethod
     def _estimate_cost(input_tokens, output_tokens):
         return round((input_tokens / 1_000_000) * 3 + (output_tokens / 1_000_000) * 15, 6)
+
+    def _current_month_cost(self):
+        from django.db.models import Sum
+        from django.utils import timezone
+        now = timezone.now()
+        start_of_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        from apps.translation.models import TranslationLog
+        total = TranslationLog.objects.filter(
+            ai_provider=self.provider,
+            status="success",
+            created_at__gte=start_of_month,
+        ).aggregate(Sum("cost_usd"))["cost_usd__sum"] or 0
+        return float(total)

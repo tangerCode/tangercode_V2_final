@@ -99,16 +99,18 @@ class Command(BaseCommand):
 
     def _seed_ai_provider(self):
         from apps.translation.models import AIProvider
+        from django.conf import settings
 
         if not AIProvider.objects.filter(is_active=True).exists():
             provider = AIProvider.objects.create(
                 name="Claude Sonnet",
                 provider_type="claude",
-                model_name="claude-3-5-sonnet-20241022",
+                model_name=settings.CLAUDE_MODEL,
+                max_tokens=settings.CLAUDE_MAX_TOKENS,
                 is_default=True,
                 is_active=True,
             )
-            self.stdout.write(f"  AI Provider created: {provider.name} (needs API key configured)")
+            self.stdout.write(f"  AI Provider created: {provider.name} ({provider.model_name}, needs API key configured)")
         else:
             self.stdout.write("  AI Provider already exists (skipped)")
 

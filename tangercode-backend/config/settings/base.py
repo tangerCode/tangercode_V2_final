@@ -276,3 +276,5 @@ FERNET_ENCRYPTION_KEY = config("FERNET_ENCRYPTION_KEY", default="")
 
 # AI Translation (P5)
 ANTHROPIC_API_KEY = config("ANTHROPIC_API_KEY", default="")
+CLAUDE_MODEL = config("CLAUDE_MODEL", default="claude-sonnet-4-20250514")
+CLAUDE_MAX_TOKENS = config("CLAUDE_MAX_TOKENS", default="4096", cast=int)

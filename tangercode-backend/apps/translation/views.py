@@ -76,15 +76,27 @@ class TranslationLogAdminViewSet(mixins.ListModelMixin,
 
     @action(detail=False, methods=["get"], url_path="stats")
     def stats(self, request):
+        from django.db.models.functions import TruncMonth
         qs = self.filter_queryset(self.get_queryset())
         total_tokens = qs.aggregate(Sum("tokens_used"))["tokens_used__sum"] or 0
         total_cost = qs.aggregate(Sum("cost_usd"))["cost_usd__sum"] or 0
         by_status = qs.values("status").annotate(count=Count("id"))
+        monthly = (
+            qs.filter(status="success")
+            .annotate(month=TruncMonth("created_at"))
+            .values("month")
+            .annotate(cost=Sum("cost_usd"), count=Count("id"))
+            .order_by("-month")
+        )
         return Response({
             "total_translations": qs.count(),
             "total_tokens_used": total_tokens,
             "total_cost_usd": float(total_cost),
             "by_status": {s["status"]: s["count"] for s in by_status},
+            "by_month": [
+                {"month": m["month"].strftime("%Y-%m"), "cost_usd": float(m["cost"] or 0), "count": m["count"]}
+                for m in monthly
+            ],
         })
 
 

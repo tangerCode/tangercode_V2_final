@@ -14,8 +14,13 @@ class TestTranslationService:
     def test_translate_success(self, ai_provider, mock_claude_response):
         from apps.translation.services import TranslationService
         service = TranslationService(provider=ai_provider)
-        with patch.object(service, "_get_client") as mock_client:
-            mock_client.return_value.messages.create.return_value = mock_claude_response
+        with patch.object(service, "_get_client") as mock_get:
+            mock_client = mock_get.return_value
+            mock_client.translate.return_value = {
+                "translated_text": "Translated text",
+                "input_tokens": 10,
+                "output_tokens": 5,
+            }
             result = service.translate("Hello world", "en", "fr")
         assert result["status"] == "success"
         assert "Translated text" in result["translated_text"]
@@ -30,14 +35,14 @@ class TestTranslationService:
         call_count = 0
 
         class CountingClient:
-            @property
-            def messages(self):
-                return self
-
-            def create(self, **kwargs):
+            def translate(self, prompt):
                 nonlocal call_count
                 call_count += 1
-                return mock_claude_response
+                return {
+                    "translated_text": "Translated",
+                    "input_tokens": 10,
+                    "output_tokens": 5,
+                }
 
         with patch.object(service, "_get_client", return_value=CountingClient()):
             r1 = service.translate("Hello", "en", "fr")
@@ -64,8 +69,12 @@ class TestTranslationService:
         svc = Service.objects.create(icon="test")
         ServiceTranslation.objects.create(service=svc, language=language_fr, title="Bonjour", short_description="Desc FR")
         service = TranslationService(provider=ai_provider)
-        with patch.object(service, "_get_client") as mock_client:
-            mock_client.return_value.messages.create.return_value = mock_claude_response
+        with patch.object(service, "_get_client") as mock_get:
+            mock_get.return_value.translate.return_value = {
+                "translated_text": "Hello",
+                "input_tokens": 10,
+                "output_tokens": 5,
+            }
             result = service.translate_object(svc, language_fr, [language_en], force=True)
         assert isinstance(result, dict)
         assert len(result) >= 0
@@ -81,8 +90,12 @@ class TestTranslationService:
             auto_translated=False, last_edited_manually=timezone.now(),
         )
         service = TranslationService(provider=ai_provider)
-        with patch.object(service, "_get_client") as mock_client:
-            mock_client.return_value.messages.create.return_value = mock_claude_response
+        with patch.object(service, "_get_client") as mock_get:
+            mock_get.return_value.translate.return_value = {
+                "translated_text": "Hello updated",
+                "input_tokens": 5,
+                "output_tokens": 3,
+            }
             result = service.translate_object(svc, language_fr, [language_en], force=False)
         assert isinstance(result, dict)
 

@@ -15,9 +15,11 @@ class AIProvider(models.Model):
     provider_type = models.CharField(max_length=20, choices=ProviderType.choices, default=ProviderType.CLAUDE)
     api_key = models.TextField(help_text="Encrypted at rest with Fernet")
     base_url = models.URLField(blank=True, default="", help_text="Override API base URL")
-    model_name = models.CharField(max_length=100, default="claude-3-5-sonnet-20241022")
+    model_name = models.CharField(max_length=100, default="claude-sonnet-4-20250514")
     max_tokens = models.IntegerField(default=4096)
     temperature = models.FloatField(default=0.3)
+    monthly_cost_limit = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
+                                              help_text="Optional monthly USD cost cap. Translation is blocked when exceeded.")
     is_active = models.BooleanField(default=True)
     is_default = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

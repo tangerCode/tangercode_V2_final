@@ -312,7 +312,7 @@ def ai_provider(db):
     provider = AIProvider.objects.create(
         name="Test Claude",
         provider_type="claude",
-        model_name="claude-3-5-sonnet-20241022",
+        model_name="claude-sonnet-4-20250514",
         is_default=True,
         is_active=True,
     )

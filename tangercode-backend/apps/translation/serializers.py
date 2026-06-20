@@ -14,6 +14,7 @@ class AIProviderSerializer(serializers.ModelSerializer):
         fields = [
             "id", "name", "provider_type", "api_key", "decrypted_api_key",
             "base_url", "model_name", "max_tokens", "temperature",
+            "monthly_cost_limit",
             "is_active", "is_default", "created_at", "updated_at",
         ]
         read_only_fields = ["created_at", "updated_at"]

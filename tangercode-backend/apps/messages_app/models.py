@@ -47,3 +47,45 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.subject[:50]}"
+
+
+class NewsletterSubscriber(models.Model):
+    email = models.EmailField(unique=True)
+    is_confirmed = models.BooleanField(default=False)
+    confirmation_token = models.CharField(max_length=64, unique=True)
+    unsubscribe_token = models.CharField(max_length=64, unique=True)
+    language = models.CharField(max_length=5, default="fr")
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+    confirmed_at = models.DateTimeField(null=True, blank=True)
+    unsubscribed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Newsletter Subscriber"
+        verbose_name_plural = "Newsletter Subscribers"
+        ordering = ["-subscribed_at"]
+
+    def __str__(self):
+        return self.email
+
+
+class EmailLog(models.Model):
+    class Status(models.TextChoices):
+        SENT = "sent", "Sent"
+        FAILED = "failed", "Failed"
+
+    to_email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    template_name = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.SENT)
+    error_message = models.TextField(blank=True, default="")
+    related_object_type = models.CharField(max_length=50, blank=True, default="")
+    related_object_id = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name = "Email Log"
+        verbose_name_plural = "Email Logs"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.template_name} → {self.to_email} ({self.status})"

@@ -1,0 +1,14 @@
+{{ site_name }} — Reply to your message
+
+Hello {{ name }},
+
+We are replying to your inquiry regarding "{{ original_subject }}".
+
+Our reply:
+{{ reply_content }}
+
+Contact us:
+Phone: {{ site_phone }}
+{% if whatsapp_number %}WhatsApp: {{ whatsapp_number }}{% endif %}
+
+— {{ site_name }}, Tanger, Maroc

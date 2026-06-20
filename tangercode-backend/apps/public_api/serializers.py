@@ -315,6 +315,7 @@ class SiteConfigSerializer(serializers.ModelSerializer):
             "site_name", "site_email", "site_phone", "site_address",
             "whatsapp_number", "logo_light", "logo_dark", "favicon",
             "linkedin_url", "github_url", "instagram_url", "facebook_url", "twitter_url",
+            "recaptcha_site_key",
             "translations",
         ]
 
@@ -340,11 +341,15 @@ class PageSEOSerializer(serializers.ModelSerializer):
 
 
 class ContactMessageSerializer(serializers.ModelSerializer):
+    recaptcha_token = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    honeypot = serializers.CharField(write_only=True, required=False, allow_blank=True)
+
     class Meta:
         model = ContactMessage
         fields = [
             "name", "email", "phone", "company", "subject", "message",
             "service_interested", "budget_range",
+            "recaptcha_token", "honeypot",
         ]
         extra_kwargs = {
             "phone": {"required": False},
@@ -353,10 +358,31 @@ class ContactMessageSerializer(serializers.ModelSerializer):
             "budget_range": {"required": False},
         }
 
+    def validate_message(self, value):
+        from apps.messages_app.services import ContactService
+        return ContactService.sanitize(value)
+
+    def validate_subject(self, value):
+        from apps.messages_app.services import ContactService
+        return ContactService.sanitize(value)
+
+    def validate(self, data):
+        from apps.messages_app.services import ContactService
+        honeypot = data.pop("honeypot", "") or ""
+        recaptcha_token = data.pop("recaptcha_token", "") or ""
+        if honeypot.strip():
+            data["status"] = "spam"
+        elif recaptcha_token.strip():
+            result = ContactService.verify_recaptcha(recaptcha_token)
+            score = result.get("score", 0)
+            if score < 0.5 and not result.get("bypass"):
+                data["status"] = "spam"
+        return data
+
     def create(self, validated_data):
         request = self.context.get("request")
         validated_data["ip_address"] = request.META.get("REMOTE_ADDR")
         validated_data["user_agent"] = request.META.get("HTTP_USER_AGENT", "")[:500]
         validated_data["language"] = self.context.get("lang", "fr")
-        validated_data["status"] = "new"
+        validated_data.setdefault("status", "new")
         return super().create(validated_data)

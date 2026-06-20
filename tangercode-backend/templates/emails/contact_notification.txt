@@ -1,0 +1,16 @@
+{{ site_name }} — New contact message
+
+From: {{ name }} ({{ email }})
+{% if phone %}Phone: {{ phone }}{% endif %}
+{% if company %}Company: {{ company }}{% endif %}
+Subject: {{ subject }}
+{% if budget_range %}Budget: {{ budget_range }}{% endif %}
+{% if service_interested %}Service: {{ service_interested }}{% endif %}
+Language: {{ language }}
+
+Message:
+{{ message }}
+
+Reply in dashboard: {{ site_url }}/admin/messages/{{ message_id }}/
+
+— {{ site_name }}, Tanger, Maroc

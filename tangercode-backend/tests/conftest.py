@@ -354,3 +354,27 @@ def mock_empty_response():
     mock.usage.input_tokens = 1
     mock.usage.output_tokens = 1
     return mock
+
+
+# ==== P6 contact/email fixtures ====
+
+
+@pytest.fixture
+def site_config_with_recaptcha(db):
+    from apps.core.models import SiteConfig
+    config = SiteConfig.load()
+    config.recaptcha_site_key = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    config.recaptcha_secret_key = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
+    config.site_email = "contact@tangercode.com"
+    config.save()
+    return config
+
+
+@pytest.fixture
+def mock_recaptcha_success():
+    return {"success": True, "score": 0.9, "action": "contact"}
+
+
+@pytest.fixture
+def mock_recaptcha_fail():
+    return {"success": False, "score": 0.1, "action": "contact"}

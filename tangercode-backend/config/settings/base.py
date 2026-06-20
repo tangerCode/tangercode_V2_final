@@ -70,7 +70,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -165,6 +165,7 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_RATES": {
         "anon": "1000/hour",
         "user": "5000/hour",
+        "contact": "3/hour",
     },
 }
 
@@ -238,6 +239,11 @@ CORS_ALLOWED_ORIGINS = config(
     cast=Csv(),
 )
 CORS_ALLOW_CREDENTIALS = True
+
+# ---------------------------------------------------------------------------
+# Admin emails (for error notifications, contact alerts, etc.)
+# ---------------------------------------------------------------------------
+ADMINS = [("Admin TANGER CODE", "admin@tangercode.com")]
 
 # ---------------------------------------------------------------------------
 # Security (relaxed in dev, strict in prod)

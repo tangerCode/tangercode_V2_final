@@ -482,13 +482,21 @@ class ContactMessageAdminViewSet(ActivityLogMixin,
         reply_serializer.is_valid(raise_exception=True)
         message = reply_serializer.save()
         self.log_action(request, ActivityLog.Action.UPDATED, message, {"action": "replied"})
+        from apps.messages_app.services import ContactService
+        ContactService.send_reply_email(message)
         return Response(
-            {"detail": "Reply saved. Email will be sent (P6).", "message_id": message.pk}
+            {"detail": "Reply saved and email sent.", "message_id": message.pk}
         )
 
     @action(detail=False, methods=["get"], url_path="export")
     def export_csv(self, request):
         messages = self.filter_queryset(self.get_queryset())
+        start_date = request.GET.get("start_date")
+        end_date = request.GET.get("end_date")
+        if start_date:
+            messages = messages.filter(created_at__gte=start_date)
+        if end_date:
+            messages = messages.filter(created_at__lte=end_date)
         output = StringIO()
         writer = csv.writer(output)
         writer.writerow(["id", "name", "email", "phone", "company", "subject", "message",
@@ -500,19 +508,34 @@ class ContactMessageAdminViewSet(ActivityLogMixin,
                 m.created_at.isoformat(),
             ])
         response = HttpResponse(output.getvalue(), content_type="text/csv")
-        response["Content-Disposition"] = f'attachment; filename="messages_{datetime.date.today()}.csv"'
+        filename = f"messages_{datetime.date.today()}.csv"
+        if start_date:
+            filename = f"messages_{start_date}_{end_date or 'now'}.csv"
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
         return response
 
     @action(detail=False, methods=["get"], url_path="stats")
     def stats(self, request):
+        from django.utils import timezone
+        now = timezone.now()
+        today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        week_start = today - datetime.timedelta(days=today.weekday())
+        month_start = today.replace(day=1)
         qs = ContactMessage.objects.all()
+        replied = qs.filter(status="replied").count()
+        read = qs.filter(status="read").count()
+        response_rate = round((replied / (replied + read)) * 100, 1) if (replied + read) > 0 else 0
         data = {
             "total": qs.count(),
             "new": qs.filter(status="new").count(),
-            "read": qs.filter(status="read").count(),
-            "replied": qs.filter(status="replied").count(),
+            "read": read,
+            "replied": replied,
             "archived": qs.filter(status="archived").count(),
             "spam": qs.filter(status="spam").count(),
+            "today": qs.filter(created_at__gte=today).count(),
+            "this_week": qs.filter(created_at__gte=week_start).count(),
+            "this_month": qs.filter(created_at__gte=month_start).count(),
+            "response_rate": response_rate,
         }
         return Response(data)
 

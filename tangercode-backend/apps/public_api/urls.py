@@ -20,4 +20,7 @@ urlpatterns += [
     path("site-config/", views.SiteConfigView.as_view(), name="public-site-config"),
     path("site-config/seo/<str:page_key>/", views.SiteConfigSEOView.as_view(), name="public-site-config-seo"),
     path("contact/", views.ContactView.as_view(), name="public-contact"),
+    path("newsletter/subscribe/", views.NewsletterSubscriberView.as_view(), name="public-newsletter-subscribe"),
+    path("newsletter/confirm/", views.NewsletterConfirmView.as_view(), name="public-newsletter-confirm"),
+    path("newsletter/unsubscribe/", views.NewsletterUnsubscribeView.as_view(), name="public-newsletter-unsubscribe"),
 ]

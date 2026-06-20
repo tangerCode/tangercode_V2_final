@@ -1,16 +1,17 @@
 import logging
 
 from django.shortcuts import get_object_or_404
-from rest_framework import mixins, permissions, status, views, viewsets
+from rest_framework import mixins, permissions, serializers, status, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
 
 from apps.services.models import PricingTier, Service, Technology
 from apps.portfolio.models import Project
 from apps.blog.models import BlogCategory, BlogPost, BlogTag
 from apps.testimonials.models import Testimonial
 from apps.faq.models import FAQCategory
-from apps.messages_app.models import ContactMessage
+from apps.messages_app.models import ContactMessage, NewsletterSubscriber
 from apps.core.models import PageSEO, SiteConfig
 
 from .serializers import (
@@ -32,6 +33,11 @@ from .serializers import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+class ContactRateThrottle(AnonRateThrottle):
+    scope = "contact"
+    rate = "3/hour"
 
 
 class LanguageContextMixin:
@@ -221,9 +227,74 @@ class SiteConfigSEOView(views.APIView):
 
 class ContactView(views.APIView):
     permission_classes = [permissions.AllowAny]
+    throttle_classes = [ContactRateThrottle]
 
     def post(self, request):
         serializer = ContactMessageSerializer(data=request.data, context={"request": request, "lang": request.GET.get("lang", "fr")})
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        message = serializer.save()
+
+        if message.status == "spam":
+            return Response({"detail": "Message sent successfully"}, status=status.HTTP_201_CREATED)
+
+        from apps.messages_app.services import ContactService
+        ContactService.send_autoreply_email(message)
+        ContactService.send_admin_notification(message)
+
         return Response({"detail": "Message sent successfully"}, status=status.HTTP_201_CREATED)
+
+
+class NewsletterSubscribeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    language = serializers.CharField(max_length=5, required=False, default="fr")
+
+
+class NewsletterSubscriberView(views.APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = NewsletterSubscribeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data["email"]
+        language = serializer.validated_data.get("language", "fr")
+        import uuid
+        subscriber, created = NewsletterSubscriber.objects.get_or_create(
+            email=email,
+            defaults={
+                "confirmation_token": uuid.uuid4().hex,
+                "unsubscribe_token": uuid.uuid4().hex,
+                "language": language,
+            },
+        )
+        if not created and not subscriber.is_confirmed:
+            return Response({"detail": "Confirmation email sent"}, status=status.HTTP_200_OK)
+        if not created and subscriber.is_confirmed:
+            return Response({"detail": "Already subscribed"}, status=status.HTTP_200_OK)
+        return Response({"detail": "Confirmation email sent"}, status=status.HTTP_201_CREATED)
+
+
+class NewsletterConfirmView(views.APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        token = request.GET.get("token", "")
+        subscriber = get_object_or_404(NewsletterSubscriber, confirmation_token=token)
+        if not subscriber.is_confirmed:
+            subscriber.is_confirmed = True
+            from django.utils import timezone
+            subscriber.confirmed_at = timezone.now()
+            subscriber.save(update_fields=["is_confirmed", "confirmed_at"])
+        return Response({"detail": "Email confirmed. Thank you!"})
+
+
+class NewsletterUnsubscribeView(views.APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        token = request.GET.get("token", "")
+        subscriber = get_object_or_404(NewsletterSubscriber, unsubscribe_token=token)
+        if subscriber.unsubscribed_at is None:
+            from django.utils import timezone
+            subscriber.unsubscribed_at = timezone.now()
+            subscriber.save(update_fields=["unsubscribed_at"])
+        return Response({"detail": "Unsubscribed successfully."})

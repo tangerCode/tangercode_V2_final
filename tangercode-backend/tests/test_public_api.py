@@ -171,6 +171,14 @@ class TestOtherEndpoints:
 class TestContactAPI:
     BASE = "/api/v1/public/contact/"
 
+    @pytest.fixture(autouse=True)
+    def _clear_cache(self):
+        from django.core.cache import caches
+        try:
+            caches["default"].clear()
+        except Exception:
+            pass
+
     def test_submit_contact(self, api_client, db):
         r = api_client.post(self.BASE, {
             "name": "Test", "email": "t@test.com", "subject": "S", "message": "M"

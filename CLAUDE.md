@@ -128,7 +128,7 @@ Le développement suit 23 phases séquentielles (P0 → P23) documentées dans
 `../docs/cahier_de_conception_tanger_code.md` (section 8). Chaque phase contient 
 son propre prompt détaillé à suivre.
 
-**Phase courante** : P7 — Backend : Intégration GA4
+**Phase courante** : P8 — Frontend : Setup Next.js + Tailwind + Shadcn + i18n
 - [x] P0 — Setup repositories & Docker
 - [x] P1 — Backend : Django + DB + Auth JWT
 - [x] P2 — Backend : Modèles & Admin Django
@@ -136,7 +136,7 @@ son propre prompt détaillé à suivre.
 - [x] P4 — Backend : API admin (CRUD)
 - [x] P5 — Backend : Traduction IA Claude + Celery
 - [x] P6 — Backend : Contact, Emails, reCAPTCHA
-- [ ] P7 — Backend : Intégration GA4
+- [x] P7 — Backend : Intégration GA4
 - [ ] P5 — Backend : Traduction IA Claude + Celery
 - [ ] P6 — Backend : Contact, Emails, reCAPTCHA
 - [ ] P7 — Backend : Intégration GA4

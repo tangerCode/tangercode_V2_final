@@ -48,4 +48,4 @@ redis>=5.2,<5.3
 # AI Translation (P5)
 anthropic>=0.37,<0.38
 # Analytics (P7)
-# google-analytics-data>=0.18,<0.19
+google-analytics-data>=0.18,<0.19

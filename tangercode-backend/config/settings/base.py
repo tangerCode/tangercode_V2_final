@@ -49,6 +49,7 @@ LOCAL_APPS = [
     "apps.public_api",
     "apps.admin_api",
     "apps.translation",
+    "apps.analytics",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -284,3 +285,6 @@ FERNET_ENCRYPTION_KEY = config("FERNET_ENCRYPTION_KEY", default="")
 ANTHROPIC_API_KEY = config("ANTHROPIC_API_KEY", default="")
 CLAUDE_MODEL = config("CLAUDE_MODEL", default="claude-sonnet-4-20250514")
 CLAUDE_MAX_TOKENS = config("CLAUDE_MAX_TOKENS", default="4096", cast=int)
+
+# Analytics (P7)
+GA4_CREDENTIALS_PATH = config("GA4_CREDENTIALS_PATH", default="")

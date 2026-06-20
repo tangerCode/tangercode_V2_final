@@ -378,3 +378,55 @@ def mock_recaptcha_success():
 @pytest.fixture
 def mock_recaptcha_fail():
     return {"success": False, "score": 0.1, "action": "contact"}
+
+
+# ==== P7 GA4 analytics fixtures ====
+
+
+@pytest.fixture
+def site_config_with_ga4(db):
+    from apps.core.models import SiteConfig
+    config = SiteConfig.load()
+    config.ga4_property_id = "123456789"
+    config.ga4_measurement_id = "G-XXXXXXXXXX"
+    config.save()
+    return config
+
+
+class _MockMetricValue:
+    def __init__(self, value):
+        self.value = str(value)
+
+
+class _MockDimensionValue:
+    def __init__(self, value):
+        self.value = value
+
+
+class _MockRow:
+    def __init__(self, dim_values, metric_values):
+        self.dimension_values = [_MockDimensionValue(v) for v in dim_values]
+        self.metric_values = [_MockMetricValue(v) for v in metric_values]
+
+
+class _MockResponse:
+    def __init__(self, rows):
+        self.rows = [_MockRow(*r) for r in rows]
+
+
+@pytest.fixture
+def mock_ga4_overview_response():
+    return _MockResponse([(["all"], [1500, 3200, 12000, 45.5, 128.3, 42])])
+
+
+@pytest.fixture
+def mock_ga4_traffic_response():
+    return _MockResponse([
+        (["google", "organic"], [1200, 800]),
+        (["direct", "(none)"], [500, 300]),
+    ])
+
+
+@pytest.fixture
+def mock_ga4_empty_response():
+    return _MockResponse([])

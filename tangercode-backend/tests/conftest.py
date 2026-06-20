@@ -209,3 +209,89 @@ def site_config_data(language_fr):
     config = SiteConfig.load()
     SiteConfigTranslation.objects.create(config=config, language=language_fr, tagline="Dev sur mesure")
     return config
+
+
+# ==== P4 admin API fixtures ====
+
+
+@pytest.fixture
+def auth_as_editor(api_client, editor_user):
+    response = api_client.post(
+        "/api/v1/admin/auth/login/",
+        {"email": "editor@test.com", "password": "Editor12345!"},
+        format="json",
+    )
+    assert response.status_code == 200
+    tokens = response.json()
+    api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {tokens['access']}")
+    return tokens
+
+
+@pytest.fixture
+def auth_as_contributor(api_client, contributor_user):
+    response = api_client.post(
+        "/api/v1/admin/auth/login/",
+        {"email": "contributor@test.com", "password": "Contrib123!"},
+        format="json",
+    )
+    assert response.status_code == 200
+    tokens = response.json()
+    api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {tokens['access']}")
+    return tokens
+
+
+@pytest.fixture
+def auth_as_superadmin(api_client, superadmin_user):
+    from apps.users.models import ActivityLog
+    response = api_client.post(
+        "/api/v1/admin/auth/login/",
+        {"email": "superadmin@test.com", "password": "SuperAdmin123!"},
+        format="json",
+    )
+    assert response.status_code == 200
+    tokens = response.json()
+    api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {tokens['access']}")
+    return tokens
+
+
+@pytest.fixture
+def admin_service_data(language_fr, language_en, technology):
+    svc = Service.objects.create(icon="code", featured=True, is_active=True)
+    ServiceTranslation.objects.create(service=svc, language=language_fr, title="Sites web", short_description="Description FR")
+    ServiceTranslation.objects.create(service=svc, language=language_en, title="Websites", short_description="Description EN")
+    svc.technologies.add(technology)
+    return svc
+
+
+@pytest.fixture
+def admin_project_data(language_fr, technology):
+    from apps.portfolio.models import ProjectTranslation
+    proj = Project.objects.create(client_name="Corp", year=2024, category="website", is_active=True)
+    ProjectTranslation.objects.create(project=proj, language=language_fr, title="Projet Admin", short_description="Desc")
+    proj.technologies.add(technology)
+    return proj
+
+
+@pytest.fixture
+def admin_blog_data(language_fr, language_en, editor_user):
+    from apps.blog.models import (
+        BlogCategory, BlogCategoryTranslation, BlogPost, BlogPostTranslation, BlogTag, BlogTagTranslation,
+    )
+    cat = BlogCategory.objects.create(slug="tech", is_active=True)
+    BlogCategoryTranslation.objects.create(category=cat, language=language_fr, name="Technologie")
+    tag = BlogTag.objects.create(slug="django")
+    BlogTagTranslation.objects.create(tag=tag, language=language_fr, name="Django")
+    post = BlogPost.objects.create(slug="admin-post", author=editor_user, status="draft")
+    post.categories.add(cat)
+    post.tags.add(tag)
+    BlogPostTranslation.objects.create(post=post, language=language_fr, title="Post Admin", excerpt="Extrait FR")
+    BlogPostTranslation.objects.create(post=post, language=language_en, title="Admin Post", excerpt="Excerpt EN")
+    return post
+
+
+@pytest.fixture
+def admin_contributor_post(language_fr, contributor_user):
+    from apps.blog.models import BlogPost, BlogPostTranslation
+    post = BlogPost.objects.create(slug="contrib-post", author=contributor_user, status="draft")
+    BlogPostTranslation.objects.create(post=post, language=language_fr, title="Contrib Post", excerpt="Extrait")
+    return post

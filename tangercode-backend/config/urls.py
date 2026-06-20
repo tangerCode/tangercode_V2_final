@@ -23,6 +23,7 @@ urlpatterns = [
 
     # Admin API (P4)
     path("api/v1/admin/", include("apps.users.urls")),
+    path("api/v1/admin/", include("apps.admin_api.urls")),
 ]
 
 # Serve media files in development

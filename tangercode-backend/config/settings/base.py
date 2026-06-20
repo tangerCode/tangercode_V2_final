@@ -38,6 +38,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "apps.core",
+    "apps.users",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.users.middleware.ActivityLogMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -156,6 +158,12 @@ REST_FRAMEWORK = {
     },
 }
 
+# Custom throttle rates for sensitive endpoints
+AUTH_THROTTLE_RATES = {
+    "login": "5/min",
+    "password_reset": "3/hour",
+}
+
 # ---------------------------------------------------------------------------
 # Simple JWT
 # ---------------------------------------------------------------------------
@@ -247,3 +255,11 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="contact@tangercode.co
 # Default primary key field type
 # ---------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ---------------------------------------------------------------------------
+# Custom User Model
+# ---------------------------------------------------------------------------
+AUTH_USER_MODEL = "users.User"
+
+# Encryption key for sensitive fields (2FA secret, API keys)
+FERNET_ENCRYPTION_KEY = config("FERNET_ENCRYPTION_KEY", default="")

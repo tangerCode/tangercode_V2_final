@@ -1,4 +1,4 @@
-FROM node:20-alpine AS dev
+FROM node:20-slim AS dev
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
 # ---------------------------------------------------------------------------
-FROM node:20-alpine AS prod
+FROM node:20-slim AS prod
 
 WORKDIR /app
 

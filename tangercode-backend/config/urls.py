@@ -19,7 +19,7 @@ urlpatterns = [
     path("api/v1/health/", include("apps.core.urls")),
 
     # Public API (P3)
-    # path("api/v1/public/", include("apps.public_api.urls")),
+    path("api/v1/public/", include("apps.public_api.urls")),
 
     # Admin API (P4)
     path("api/v1/admin/", include("apps.users.urls")),

@@ -29,6 +29,7 @@ class FAQCategoryTranslation(models.Model):
     category = models.ForeignKey(FAQCategory, on_delete=models.CASCADE, related_name="translations")
     language = models.ForeignKey("languages.Language", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    auto_translated = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [("category", "language")]
@@ -62,6 +63,7 @@ class FAQTranslation(models.Model):
     question = models.CharField(max_length=300)
     answer = models.TextField()
     auto_translated = models.BooleanField(default=False)
+    last_edited_manually = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = [("faq", "language")]

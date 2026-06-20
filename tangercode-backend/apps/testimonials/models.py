@@ -32,6 +32,7 @@ class TestimonialTranslation(models.Model):
     language = models.ForeignKey("languages.Language", on_delete=models.CASCADE)
     content = models.TextField()
     auto_translated = models.BooleanField(default=False)
+    last_edited_manually = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = [("testimonial", "language")]

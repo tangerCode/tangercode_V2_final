@@ -1,12 +1,18 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 from apps.languages.models import Language
 from apps.portfolio.models import Project
 from apps.services.models import PricingTier, PricingTierTranslation, Service, ServiceTranslation, Technology
 
 User = get_user_model()
+
+
+def pytest_configure():
+    if not settings.FERNET_ENCRYPTION_KEY:
+        settings.FERNET_ENCRYPTION_KEY = "Z_tTzwh_Ycs08TxPCkQOyfe1pR9C5QznpwdIufFTaZQ="
 
 
 @pytest.fixture
@@ -295,3 +301,56 @@ def admin_contributor_post(language_fr, contributor_user):
     post = BlogPost.objects.create(slug="contrib-post", author=contributor_user, status="draft")
     BlogPostTranslation.objects.create(post=post, language=language_fr, title="Contrib Post", excerpt="Extrait")
     return post
+
+
+# ==== P5 translation fixtures ====
+
+
+@pytest.fixture
+def ai_provider(db):
+    from apps.translation.models import AIProvider
+    provider = AIProvider.objects.create(
+        name="Test Claude",
+        provider_type="claude",
+        model_name="claude-3-5-sonnet-20241022",
+        is_default=True,
+        is_active=True,
+    )
+    provider.set_api_key("sk-ant-test-key-12345")
+    provider.save()
+    return provider
+
+
+@pytest.fixture
+def translation_prompt(db):
+    from apps.translation.models import TranslationPrompt
+    return TranslationPrompt.objects.create(
+        name="Test Prompt",
+        field_type="default",
+        prompt_template="Translate: {content} from {source_language} to {target_language}",
+        is_default=True,
+    )
+
+
+@pytest.fixture
+def mock_claude_response():
+    from unittest.mock import MagicMock
+    mock = MagicMock()
+    content_block = MagicMock()
+    content_block.text = "Translated text"
+    mock.content = [content_block]
+    mock.usage.input_tokens = 10
+    mock.usage.output_tokens = 5
+    return mock
+
+
+@pytest.fixture
+def mock_empty_response():
+    from unittest.mock import MagicMock
+    mock = MagicMock()
+    content_block = MagicMock()
+    content_block.text = ""
+    mock.content = [content_block]
+    mock.usage.input_tokens = 1
+    mock.usage.output_tokens = 1
+    return mock

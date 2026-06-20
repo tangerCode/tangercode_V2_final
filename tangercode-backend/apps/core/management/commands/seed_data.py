@@ -13,6 +13,8 @@ class Command(BaseCommand):
         self._seed_languages()
         self._seed_technologies()
         self._seed_seo()
+        self._seed_ai_provider()
+        self._seed_prompts()
         self._seed_superadmin()
         self.stdout.write(self.style.SUCCESS("Seed data loaded successfully."))
 
@@ -94,3 +96,52 @@ class Command(BaseCommand):
             self.stdout.write(f"  Superadmin created: {user.email} (password: Admin12345!)")
         else:
             self.stdout.write("  Superadmin already exists (skipped)")
+
+    def _seed_ai_provider(self):
+        from apps.translation.models import AIProvider
+
+        if not AIProvider.objects.filter(is_active=True).exists():
+            provider = AIProvider.objects.create(
+                name="Claude Sonnet",
+                provider_type="claude",
+                model_name="claude-3-5-sonnet-20241022",
+                is_default=True,
+                is_active=True,
+            )
+            self.stdout.write(f"  AI Provider created: {provider.name} (needs API key configured)")
+        else:
+            self.stdout.write("  AI Provider already exists (skipped)")
+
+    def _seed_prompts(self):
+        from apps.translation.models import TranslationPrompt
+
+        defaults = [
+            ("Texte court (default)", "default", True),
+            ("Texte long (description)", "long_text", True),
+            ("Texte riche (article HTML)", "rich_text", True),
+            ("Liste (features)", "list", True),
+        ]
+        prompt_template = (
+            "You are a professional translator specializing in tech and web development content.\n\n"
+            "TASK: Translate the following {field_type} from {source_language} to {target_language}.\n\n"
+            "RULES:\n"
+            "- Maintain the original tone and style\n"
+            "- Keep technical terms in English (e.g. \"Next.js\", \"Django\", \"API\", \"ERP\")\n"
+            "- Keep brand names unchanged (\"TANGER CODE\")\n"
+            "- Preserve HTML tags if present\n"
+            "- For Arabic: use Modern Standard Arabic, professional tone\n"
+            "- For French: use a professional but accessible tone\n"
+            "- Return ONLY the translation, no explanations, no quotes\n\n"
+            "CONTENT TO TRANSLATE:\n{content}\n\nTRANSLATION:"
+        )
+        for name, field_type, is_default in defaults:
+            obj, created = TranslationPrompt.objects.get_or_create(
+                field_type=field_type,
+                defaults={"name": name, "prompt_template": prompt_template, "is_default": is_default},
+            )
+            if not created:
+                obj.name = name
+                obj.prompt_template = prompt_template
+                obj.is_default = is_default
+                obj.save()
+            self.stdout.write(f"  Translation Prompt: {obj.name} ({obj.field_type}) — {'created' if created else 'updated'}")

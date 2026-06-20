@@ -67,6 +67,7 @@ class ProjectTranslation(models.Model):
     meta_title = models.CharField(max_length=120, blank=True, default="")
     meta_description = models.TextField(max_length=320, blank=True, default="")
     auto_translated = models.BooleanField(default=False)
+    last_edited_manually = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = [("project", "language")]

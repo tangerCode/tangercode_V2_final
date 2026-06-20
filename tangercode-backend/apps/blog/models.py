@@ -31,6 +31,7 @@ class BlogCategoryTranslation(models.Model):
     language = models.ForeignKey("languages.Language", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
+    auto_translated = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [("category", "language")]
@@ -63,6 +64,7 @@ class BlogTagTranslation(models.Model):
     tag = models.ForeignKey(BlogTag, on_delete=models.CASCADE, related_name="translations")
     language = models.ForeignKey("languages.Language", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    auto_translated = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [("tag", "language")]
@@ -115,6 +117,7 @@ class BlogPostTranslation(models.Model):
     meta_title = models.CharField(max_length=120, blank=True, default="")
     meta_description = models.TextField(max_length=320, blank=True, default="")
     auto_translated = models.BooleanField(default=False)
+    last_edited_manually = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = [("post", "language")]

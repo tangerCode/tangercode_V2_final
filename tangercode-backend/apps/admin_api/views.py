@@ -115,8 +115,15 @@ class ServiceAdminViewSet(ActivityLogMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=["post"], url_path="translate")
     def translate(self, request, pk=None):
         service = self.get_object()
+        target_languages = request.data.get("target_languages", ["en", "ar"])
+        force = request.data.get("force", False)
+        from django.contrib.contenttypes.models import ContentType
+        ct = ContentType.objects.get_for_model(service)
+        from apps.translation.tasks import translate_object_task
+        translate_object_task.delay(ct.pk, service.pk, "fr", target_langs=target_languages, force=force)
         return Response(
-            {"detail": "Translation will be triggered via Celery (P5).", "service_id": service.pk},
+            {"detail": "Translation triggered via Celery.", "service_id": service.pk,
+             "target_languages": target_languages},
             status=status.HTTP_202_ACCEPTED,
         )
 
@@ -241,8 +248,15 @@ class ProjectAdminViewSet(ActivityLogMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=["post"], url_path="translate")
     def translate(self, request, pk=None):
         project = self.get_object()
+        target_languages = request.data.get("target_languages", ["en", "ar"])
+        force = request.data.get("force", False)
+        from django.contrib.contenttypes.models import ContentType
+        ct = ContentType.objects.get_for_model(project)
+        from apps.translation.tasks import translate_object_task
+        translate_object_task.delay(ct.pk, project.pk, "fr", target_langs=target_languages, force=force)
         return Response(
-            {"detail": "Translation will be triggered via Celery (P5).", "project_id": project.pk},
+            {"detail": "Translation triggered via Celery.", "project_id": project.pk,
+             "target_languages": target_languages},
             status=status.HTTP_202_ACCEPTED,
         )
 
@@ -341,8 +355,15 @@ class BlogPostAdminViewSet(ActivityLogMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=["post"], url_path="translate")
     def translate(self, request, pk=None):
         post = self.get_object()
+        target_languages = request.data.get("target_languages", ["en", "ar"])
+        force = request.data.get("force", False)
+        from django.contrib.contenttypes.models import ContentType
+        ct = ContentType.objects.get_for_model(post)
+        from apps.translation.tasks import translate_object_task
+        translate_object_task.delay(ct.pk, post.pk, "fr", target_langs=target_languages, force=force)
         return Response(
-            {"detail": "Translation will be triggered via Celery (P5).", "post_id": post.pk},
+            {"detail": "Translation triggered via Celery.", "post_id": post.pk,
+             "target_languages": target_languages},
             status=status.HTTP_202_ACCEPTED,
         )
 

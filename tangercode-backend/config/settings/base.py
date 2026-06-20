@@ -32,7 +32,7 @@ THIRD_PARTY_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "django_filters",
-    # "django_celery_beat",  # P5
+    "django_celery_beat",
     "drf_spectacular",
 ]
 
@@ -48,6 +48,7 @@ LOCAL_APPS = [
     "apps.messages_app",
     "apps.public_api",
     "apps.admin_api",
+    "apps.translation",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -218,15 +219,15 @@ CACHES = {
 # ---------------------------------------------------------------------------
 # Celery — (P5)
 # ---------------------------------------------------------------------------
-# CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://redis:6379/1")
-# CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND", default="redis://redis:6379/2")
-# CELERY_ACCEPT_CONTENT = ["json"]
-# CELERY_TASK_SERIALIZER = "json"
-# CELERY_RESULT_SERIALIZER = "json"
-# CELERY_TIMEZONE = "Africa/Casablanca"
-# CELERY_TASK_TRACK_STARTED = True
-# CELERY_TASK_TIME_LIMIT = 30 * 60
-# CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://redis:6379/1")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND", default="redis://redis:6379/2")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "Africa/Casablanca"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # ---------------------------------------------------------------------------
 # CORS
@@ -272,3 +273,6 @@ AUTH_USER_MODEL = "users.User"
 
 # Encryption key for sensitive fields (2FA secret, API keys)
 FERNET_ENCRYPTION_KEY = config("FERNET_ENCRYPTION_KEY", default="")
+
+# AI Translation (P5)
+ANTHROPIC_API_KEY = config("ANTHROPIC_API_KEY", default="")

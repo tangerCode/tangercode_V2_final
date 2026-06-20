@@ -78,6 +78,12 @@ class ServiceTranslation(models.Model):
 
 
 class PricingTier(models.Model, TranslatableMixin):
+
+    def __str__(self):
+        return f"{self.title} ({self.language.code})"
+
+
+class PricingTier(models.Model, TranslatableMixin):
     class Code(models.TextChoices):
         STARTER = "starter", "Starter"
         PRO = "pro", "Pro"
@@ -114,6 +120,7 @@ class PricingTierTranslation(models.Model):
     features = models.JSONField(default=list, blank=True)
     cta_text = models.CharField(max_length=50, default="Commander")
     auto_translated = models.BooleanField(default=False)
+    last_edited_manually = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         unique_together = [("pricing_tier", "language")]

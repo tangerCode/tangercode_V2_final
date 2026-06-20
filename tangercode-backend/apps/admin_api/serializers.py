@@ -70,7 +70,7 @@ class PricingTierTranslationAdminSerializer(serializers.ModelSerializer):
         model = PricingTierTranslation
         fields = [
             "id", "language", "name", "description", "features", "cta_text",
-            "auto_translated",
+            "auto_translated", "last_edited_manually",
         ]
 
 
@@ -194,6 +194,7 @@ class ProjectTranslationAdminSerializer(serializers.ModelSerializer):
         fields = [
             "id", "language", "title", "short_description", "long_description",
             "client_testimonial", "meta_title", "meta_description", "auto_translated",
+            "last_edited_manually",
         ]
 
 
@@ -272,7 +273,7 @@ class BlogPostTranslationAdminSerializer(serializers.ModelSerializer):
         model = BlogPostTranslation
         fields = [
             "id", "language", "title", "excerpt", "content",
-            "meta_title", "meta_description", "auto_translated",
+            "meta_title", "meta_description", "auto_translated", "last_edited_manually",
         ]
 
 
@@ -358,7 +359,7 @@ class BlogCategoryTranslationAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogCategoryTranslation
-        fields = ["id", "language", "name", "description"]
+        fields = ["id", "language", "name", "description", "auto_translated"]
 
 
 class BlogCategoryAdminSerializer(serializers.ModelSerializer):
@@ -387,7 +388,7 @@ class BlogTagTranslationAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogTagTranslation
-        fields = ["id", "language", "name"]
+        fields = ["id", "language", "name", "auto_translated"]
 
 
 class BlogTagAdminSerializer(serializers.ModelSerializer):
@@ -421,7 +422,7 @@ class TestimonialTranslationAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TestimonialTranslation
-        fields = ["id", "language", "content", "auto_translated"]
+        fields = ["id", "language", "content", "auto_translated", "last_edited_manually"]
 
 
 class TestimonialAdminSerializer(serializers.ModelSerializer):
@@ -459,7 +460,7 @@ class FAQTranslationAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FAQTranslation
-        fields = ["id", "language", "question", "answer", "auto_translated"]
+        fields = ["id", "language", "question", "answer", "auto_translated", "last_edited_manually"]
 
 
 class FAQAdminSerializer(serializers.ModelSerializer):
@@ -487,7 +488,7 @@ class FAQCategoryTranslationAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FAQCategoryTranslation
-        fields = ["id", "language", "name"]
+        fields = ["id", "language", "name", "auto_translated"]
 
 
 class FAQCategoryAdminSerializer(serializers.ModelSerializer):

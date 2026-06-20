@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — Page introuvable — TANGER CODE</title>
+<meta name="description" content="Page introuvable." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tangercode.css" />
+</head>
+<body>
+<div class="err-wrap">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 50% 40%,rgba(0,212,255,0.10),transparent 60%);"></div>
+  <div class="container" style="position:relative;z-index:2;max-width:640px;">
+    <a href="index.html" class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></a>
+    <div class="err-code grad-text" style="margin:24px 0 8px;">404</div>
+    <div class="err-term">
+      <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></div>
+      <div class="body"><span class="tok-c">$</span> <span class="tok-f">find</span> /page <span class="tok-c">--name</span> "introuvable"<br><span style="color:var(--error);">Error 404:</span> Page not found<br><span class="tok-c">$</span> <span style="opacity:.6;">redirection conseillée…</span><span class="blink" style="color:var(--cyan);">_</span></div>
+    </div>
+    <h1 class="h2" style="margin-bottom:12px;">Oups ! Page introuvable</h1>
+    <p class="muted" style="max-width:46ch;margin:0 auto 28px;">La page que vous cherchez a été déplacée, supprimée, ou n'a jamais existé. Pas de panique, on vous ramène en terrain connu.</p>
+    <div class="hero-cta"><a href="index.html" class="btn btn-primary btn-lg">Retour à l'accueil</a><a href="services.html" class="btn btn-ghost btn-lg">Voir nos services</a></div>
+  </div>
+</div>
+<style>.blink{animation:blink 1.1s step-end infinite}@keyframes blink{50%{opacity:0}}</style>
+<script src="js/tangercode.js"></script>
+</body>
+</html>

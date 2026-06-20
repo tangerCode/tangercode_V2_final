@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atlas Market — Étude de cas — TANGER CODE</title>
+<meta name="description" content="Étude de cas : marketplace e-commerce Atlas Market." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tangercode.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo" aria-label="TANGER CODE accueil">
+      <span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span>
+    </a>
+    <nav class="nav-links desktop" aria-label="Navigation principale"><a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="about.html">À propos</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang">
+        <button class="icon-btn" data-lang-toggle aria-label="Changer de langue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </button>
+        <div class="lang-menu">
+          <a href="#" class="active">🇫🇷 Français</a>
+          <a href="#">🇬🇧 English</a>
+          <a href="#">🇸🇦 العربية</a>
+        </div>
+      </div>
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Basculer le thème"><span data-theme-icon></span></button>
+      <a href="contact.html" class="btn btn-primary btn-sm desktop-only">Démarrer un projet</a>
+      <button class="icon-btn burger" data-drawer-open aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" aria-hidden="true">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <span class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></span>
+    <button class="icon-btn" data-drawer-close aria-label="Fermer le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html" aria-current="page">Portfolio</a>
+    <a href="pricing.html">Tarifs</a>
+    <a href="about.html">À propos</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="contact.html" class="btn btn-primary btn-lg btn-block" style="margin-top:28px;">Démarrer un projet</a>
+</div>
+<main>
+
+<section style="position:relative;min-height:72vh;display:flex;align-items:flex-end;overflow:hidden;">
+  <div class="ph" data-label="cover full · Atlas Market" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg-base) 4%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.5));"></div>
+  <div class="container" style="position:relative;z-index:2;padding-bottom:56px;padding-top:140px;">
+    <nav class="breadcrumb left"><a href="index.html">Accueil</a><span>/</span><a href="portfolio.html">Portfolio</a><span>/</span>Atlas Market</nav>
+    <span class="badge badge-cyan" style="margin-bottom:16px;">E-commerce</span>
+    <h1 class="h-hero" style="font-size:clamp(2.4rem,6vw,4.5rem);max-width:16ch;margin:8px 0 20px;">Atlas Market</h1>
+    <div class="flex gap" style="flex-wrap:wrap;color:var(--text-secondary);font-family:var(--font-mono);font-size:0.85rem;">
+      <span>Client · Atlas Retail Group</span><span>•</span><span>Année · 2025</span><span>•</span><span>Durée · 4 mois</span><span>•</span><a href="#" class="link-arrow">Voir le site live →</a>
+    </div>
+    <div class="proj-chips" style="margin-top:18px;"><span class="chip">Next.js</span><span class="chip">Stripe</span><span class="chip">Sanity</span><span class="chip">PostgreSQL</span><span class="chip">Vercel</span></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container prose">
+    <h2>Le défi</h2>
+    <p>Atlas Retail Group souhaitait unifier ses trois enseignes sous une marketplace unique, capable de gérer des milliers de références, plusieurs vendeurs et des pics de trafic pendant les périodes de soldes. L'ancien site, lent et difficile à maintenir, freinait la croissance.</p>
+    <p>L'enjeu : livrer une expérience d'achat rapide, multilingue (FR/AR) et un back-office permettant aux équipes de gérer le catalogue en toute autonomie.</p>
+    <h2>Notre solution</h2>
+    <p>Nous avons reconstruit la plateforme sur Next.js avec un CMS headless (Sanity) et des paiements Stripe. Le rendu côté serveur et un CDN global garantissent des temps de chargement sous la seconde, partout dans le monde.</p>
+    <div class="ph" data-label="capture · interface marketplace" style="aspect-ratio:16/9;"></div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal"><p class="eyebrow">RÉSULTATS</p><h2>Un impact mesurable</h2></div>
+    <div class="stat-trio reveal">
+      <div class="card"><div class="n">+40%</div><p class="muted">de ventes en ligne en 3 mois</p></div>
+      <div class="card"><div class="n">0.8s</div><p class="muted">temps de chargement moyen</p></div>
+      <div class="card"><div class="n">3→1</div><p class="muted">enseignes unifiées en une marketplace</p></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal"><p class="eyebrow">GALERIE</p><h2>Le projet en images</h2></div>
+    <div class="mosaic reveal">
+      <div class="ph big" data-label="écran · accueil"></div>
+      <div class="ph" data-label="écran · fiche produit"></div>
+      <div class="ph" data-label="écran · panier"></div>
+      <div class="ph" data-label="écran · checkout"></div>
+      <div class="ph" data-label="écran · back-office"></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:820px;text-align:center;">
+    <div class="stars" style="justify-content:center;color:var(--gold);">★★★★★</div>
+    <p class="tst-quote" style="font-size:1.5rem;margin:18px 0;">« Un travail d'orfèvre. Le site est rapide, magnifique et nos ventes ont bondi de 40 % en trois mois. »</p>
+    <div class="tst-author" style="justify-content:center;border:0;"><div class="ph av" data-label=""></div><div style="text-align:left;"><div class="nm">Yasmine Bennani</div><div class="rl">CEO · Atlas Market</div></div></div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal row-between" style="max-width:none;align-items:flex-end;"><div><p class="eyebrow">À DÉCOUVRIR</p><h2>Projets similaires</h2></div><a href="portfolio.html" class="link-arrow">Voir tous →</a></div>
+    <div class="grid grid-3" data-stagger>
+      <article class="card card-grad proj-card"><div class="proj-cover"><div class="ph" data-label="cover · Zellige Store"></div><span class="badge badge-cyan cat">E-commerce</span><div class="proj-over"><a href="project-detail.html" class="link-arrow">Voir →</a></div></div><div class="proj-body"><h3>Zellige Store</h3><p class="client">Projet client</p><div class="proj-chips"><span class="chip">Shopify</span></div></div></article><article class="card card-grad proj-card"><div class="proj-cover"><div class="ph" data-label="cover · SoukConnect"></div><span class="badge badge-cyan cat">Plateforme</span><div class="proj-over"><a href="project-detail.html" class="link-arrow">Voir →</a></div></div><div class="proj-body"><h3>SoukConnect</h3><p class="client">Projet client</p><div class="proj-chips"><span class="chip">React</span></div></div></article><article class="card card-grad proj-card"><div class="proj-cover"><div class="ph" data-label="cover · Riad Booking"></div><span class="badge badge-cyan cat">Site web</span><div class="proj-over"><a href="project-detail.html" class="link-arrow">Voir →</a></div></div><div class="proj-body"><h3>Riad Booking</h3><p class="client">Projet client</p><div class="proj-chips"><span class="chip">Astro</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="final-cta reveal"><div class="final-grid">
+      <div><h2>Prêt à démarrer votre projet ?</h2><p class="lead">Parlons de votre idée. Réponse sous 24h, devis gratuit et sans engagement.</p>
+      <div class="hero-cta" style="justify-content:flex-start;"><a href="contact.html" class="btn btn-coral btn-lg">Démarrer un projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://wa.me/212600000000" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);">WhatsApp</a></div></div>
+      <form class="final-form" data-mock-form><h3>Contact rapide</h3>
+      <div class="field"><label for="n">Nom</label><input class="input" id="n" type="text" placeholder="Votre nom" required /></div>
+      <div class="field"><label for="e">Email</label><input class="input" id="e" type="email" placeholder="vous@email.com" required /></div>
+      <div class="field"><label for="tel">Téléphone</label><input class="input" id="tel" type="tel" placeholder="+212 6 00 00 00 00" /></div>
+          <div class="field"><label for="m">Message</label><textarea class="textarea" id="m" placeholder="Décrivez votre projet…" required></textarea></div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Envoyer</button></form>
+    </div></div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></span>
+        <p class="muted" style="margin:18px 0;max-width:34ch;font-size:0.92rem;">Développement web & mobile sur mesure. Basé à Tanger, déployé dans le monde.</p>
+        
+      </div>
+      <div><h5>Services</h5><a href="service-detail.html">Sites web</a><a href="service-detail.html">Plateformes web</a><a href="service-detail.html">ERP sur mesure</a><a href="service-detail.html">Applications mobiles</a></div>
+      <div><h5>Entreprise</h5><a href="about.html">À propos</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="faq.html">FAQ</a></div>
+      <div><h5>Contact</h5><a href="mailto:contact@tangercode.ma">contact@tangercode.ma</a><a href="tel:+212600000000">+212 6 00 00 00 00</a><a href="#">Tanger, Maroc</a><a href="contact.html">Démarrer un projet</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 TANGER CODE — Tous droits réservés.</span>
+      <div class="social"><a href="#" class="icon-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8v12H3V8h3.9zM5 3.4a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6zM21 20h-3.9v-6.3c0-1.5-.5-2.5-1.9-2.5-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H9.3V8h3.7v1.6c.5-.8 1.4-1.9 3.4-1.9 2.5 0 4.4 1.6 4.4 5.2V20z"/></svg></a><a href="#" class="icon-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#" class="icon-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.4-3H14V4.3c0-.9.3-1.5 1.6-1.5H17.5V.1C17.1.1 16 0 14.8 0 12.2 0 10.5 1.6 10.5 4v2H7.5v3h3v9h3.5V9z"/></svg></a></div>
+      <span style="display:flex;gap:18px;"><a href="legal.html" style="display:inline;">Mentions légales</a><a href="legal.html" style="display:inline;">Confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating -->
+<a href="https://wa.me/212600000000" class="fab-wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.2-.3.4-.1.7.1.3.7 1.1 1.4 1.8.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.2 1.3z"/></svg>
+</a>
+<button class="to-top" aria-label="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<div class="cookie">
+  <p>Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre politique.</p>
+  <button class="btn btn-primary btn-sm" data-cookie-accept>Accepter</button>
+</div>
+<script src="js/tangercode.js"></script>
+</body>
+</html>

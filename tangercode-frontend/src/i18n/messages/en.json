@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "TANGER CODE — Custom Web & Mobile Development",
+    "description": "Custom websites, platforms, ERP and mobile applications. Based in Tangier, deployed worldwide."
+  },
+  "home": {
+    "subtitle": "Custom websites, platforms, ERP and mobile applications. Based in Tangier, deployed worldwide.",
+    "comingSoon": "Coming Soon"
+  },
+  "common": {
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light"
+  }
+}

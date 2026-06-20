@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Connexion — Admin — TANGER CODE</title>
+<meta name="description" content="Espace d’administration TANGER CODE." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tangercode.css" />
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card card">
+    <a href="index.html" class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></a>
+    <p class="center muted" style="margin:6px 0 26px;font-size:.9rem;">Espace d'administration</p>
+    <form data-mock-form>
+      <div class="field"><label>Email</label><input class="input" type="email" placeholder="admin@tangercode.ma" required /></div>
+      <div class="field"><label>Mot de passe</label><input class="input" type="password" placeholder="••••••••" required /></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:.85rem;">
+        <label style="display:flex;gap:8px;align-items:center;color:var(--text-secondary);"><input type="checkbox" /> Se souvenir de moi</label>
+        <a href="#" class="link-arrow" style="display:inline;">Mot de passe oublié ?</a>
+      </div>
+      <a href="admin-dashboard.html" class="btn btn-primary btn-block btn-lg">Se connecter</a>
+    </form>
+  </div>
+</div>
+<script src="js/tangercode.js"></script>
+</body>
+</html>

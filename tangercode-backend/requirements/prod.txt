@@ -1,0 +1,10 @@
+-r base.txt
+
+# Production server
+gunicorn>=22.0,<23.0
+
+# PostgreSQL (production — no binary fallback)
+psycopg2>=2.9,<3.0
+
+# Security
+django-sslserver>=0.22,<0.23

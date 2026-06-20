@@ -1,0 +1,22 @@
+-r base.txt
+
+# Testing
+pytest>=8.3,<8.4
+pytest-django>=4.9,<4.10
+pytest-cov>=5.0,<5.1
+factory-boy>=3.3,<3.4
+faker>=28.1,<29.0
+
+# Debug
+django-debug-toolbar>=4.4,<4.5
+django-extensions>=3.2,<3.3
+ipython>=8.27,<8.28
+
+# Linting & Formatting
+black>=24.8,<24.9
+isort>=5.13,<5.14
+ruff>=0.6,<0.7
+pre-commit>=3.8,<3.9
+
+# Hot reload (dev)
+watchfiles>=0.24,<0.25

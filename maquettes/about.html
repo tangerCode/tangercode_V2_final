@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>À propos — TANGER CODE</title>
+<meta name="description" content="Le développeur derrière TANGER CODE, basé à Tanger." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tangercode.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo" aria-label="TANGER CODE accueil">
+      <span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span>
+    </a>
+    <nav class="nav-links desktop" aria-label="Navigation principale"><a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="about.html" aria-current="page">À propos</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang">
+        <button class="icon-btn" data-lang-toggle aria-label="Changer de langue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </button>
+        <div class="lang-menu">
+          <a href="#" class="active">🇫🇷 Français</a>
+          <a href="#">🇬🇧 English</a>
+          <a href="#">🇸🇦 العربية</a>
+        </div>
+      </div>
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Basculer le thème"><span data-theme-icon></span></button>
+      <a href="contact.html" class="btn btn-primary btn-sm desktop-only">Démarrer un projet</a>
+      <button class="icon-btn burger" data-drawer-open aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="mobile-drawer" aria-hidden="true">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <span class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></span>
+    <button class="icon-btn" data-drawer-close aria-label="Fermer le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Tarifs</a>
+    <a href="about.html" aria-current="page">À propos</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="contact.html" class="btn btn-primary btn-lg btn-block" style="margin-top:28px;">Démarrer un projet</a>
+</div>
+<main>
+
+<section class="page-hero left">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center;gap:48px;">
+      <div>
+        <nav class="breadcrumb left"><a href="index.html">Accueil</a><span>/</span>À propos</nav>
+        <p class="eyebrow">À PROPOS</p>
+        <h1 class="h1" style="margin:14px 0 16px;">Le développeur derrière <span class="grad-text">TANGER CODE</span></h1>
+        <p>Passionné de code et de design depuis plus de 5 ans, j'aide les entreprises à concrétiser leurs idées digitales avec exigence et clarté. De Tanger, je conçois des produits qui rayonnent bien au-delà.</p>
+        <div class="hero-cta" style="justify-content:flex-start;margin-top:24px;"><a href="contact.html" class="btn btn-primary btn-lg">Travaillons ensemble <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="ph" data-label="photo professionnelle" style="aspect-ratio:4/5;border-radius:var(--radius-lg);"></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal"><p class="eyebrow">PARCOURS</p><h2>Mon parcours</h2></div>
+    <div class="timeline reveal" id="timeline"><div class="tl-line"></div><div class="tl-steps" style="grid-template-columns:repeat(4,1fr);">
+      <div class="tl-step"><div class="tl-num">2019</div><h4>Premiers pas</h4><p>Début en freelance, premiers sites vitrines pour des commerçants de Tanger.</p></div><div class="tl-step"><div class="tl-num">2021</div><h4>Montée en compétence</h4><p>Spécialisation full-stack : React, Node.js, Django. Premiers projets SaaS.</p></div><div class="tl-step"><div class="tl-num">2023</div><h4>Mobile & ERP</h4><p>Élargissement vers les applications mobiles Flutter et les ERP sur mesure.</p></div><div class="tl-step"><div class="tl-num">2025</div><h4>TANGER CODE</h4><p>Lancement de la marque, plus de 50 projets livrés au Maroc et à l’international.</p></div>
+    </div></div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal"><p class="eyebrow">VALEURS</p><h2>Mes valeurs</h2></div>
+    <div class="grid grid-4" data-stagger><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3>Transparence</h3><p>Des devis clairs, une communication honnête et zéro coût caché. Vous savez toujours où en est votre projet.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3>Excellence</h3><p>Un code propre, testé et documenté. La qualité n’est pas une option, c’est la base.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3>Proximité</h3><p>Un interlocuteur unique, réactif, qui comprend votre métier et parle votre langue.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3>Engagement</h3><p>Votre réussite est la mienne. Je m’investis comme si le projet était le mien.</p></div></div>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal"><p class="eyebrow">POURQUOI NOUS</p><h2>Pourquoi choisir TANGER CODE ?</h2></div>
+    <div class="grid grid-3" data-stagger><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Interlocuteur unique</h3><p>Pas d’intermédiaire : vous échangez directement avec le développeur.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Basé à Tanger</h3><p>Ancré localement, ouvert sur le monde — FR, EN et AR.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Technologies modernes</h3><p>Next.js, React, Flutter, Django : les meilleurs outils du marché.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Respect des délais</h3><p>Un planning clair, des jalons tenus, des livraisons à l’heure.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Code qui vous appartient</h3><p>À la livraison, tout le code et les accès sont à vous.</p></div><div class="card card-grad value-card"><div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></div><h3 style="font-size:1.1rem;">Support durable</h3><p>Une relation qui ne s’arrête pas à la mise en ligne.</p></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="final-cta reveal"><div class="final-grid">
+      <div><h2>Prêt à démarrer votre projet ?</h2><p class="lead">Parlons de votre idée. Réponse sous 24h, devis gratuit et sans engagement.</p>
+      <div class="hero-cta" style="justify-content:flex-start;"><a href="contact.html" class="btn btn-coral btn-lg">Démarrer un projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://wa.me/212600000000" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);">WhatsApp</a></div></div>
+      <form class="final-form" data-mock-form><h3>Contact rapide</h3>
+      <div class="field"><label for="n">Nom</label><input class="input" id="n" type="text" placeholder="Votre nom" required /></div>
+      <div class="field"><label for="e">Email</label><input class="input" id="e" type="email" placeholder="vous@email.com" required /></div>
+      <div class="field"><label for="tel">Téléphone</label><input class="input" id="tel" type="tel" placeholder="+212 6 00 00 00 00" /></div>
+          <div class="field"><label for="m">Message</label><textarea class="textarea" id="m" placeholder="Décrivez votre projet…" required></textarea></div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Envoyer</button></form>
+    </div></div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo"><span class="bracket">&lt;</span><span class="word">TANGER&nbsp;CODE</span><span class="bracket">/&gt;</span></span>
+        <p class="muted" style="margin:18px 0;max-width:34ch;font-size:0.92rem;">Développement web & mobile sur mesure. Basé à Tanger, déployé dans le monde.</p>
+        
+      </div>
+      <div><h5>Services</h5><a href="service-detail.html">Sites web</a><a href="service-detail.html">Plateformes web</a><a href="service-detail.html">ERP sur mesure</a><a href="service-detail.html">Applications mobiles</a></div>
+      <div><h5>Entreprise</h5><a href="about.html">À propos</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="faq.html">FAQ</a></div>
+      <div><h5>Contact</h5><a href="mailto:contact@tangercode.ma">contact@tangercode.ma</a><a href="tel:+212600000000">+212 6 00 00 00 00</a><a href="#">Tanger, Maroc</a><a href="contact.html">Démarrer un projet</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 TANGER CODE — Tous droits réservés.</span>
+      <div class="social"><a href="#" class="icon-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8v12H3V8h3.9zM5 3.4a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6zM21 20h-3.9v-6.3c0-1.5-.5-2.5-1.9-2.5-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H9.3V8h3.7v1.6c.5-.8 1.4-1.9 3.4-1.9 2.5 0 4.4 1.6 4.4 5.2V20z"/></svg></a><a href="#" class="icon-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#" class="icon-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.4-3H14V4.3c0-.9.3-1.5 1.6-1.5H17.5V.1C17.1.1 16 0 14.8 0 12.2 0 10.5 1.6 10.5 4v2H7.5v3h3v9h3.5V9z"/></svg></a></div>
+      <span style="display:flex;gap:18px;"><a href="legal.html" style="display:inline;">Mentions légales</a><a href="legal.html" style="display:inline;">Confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating -->
+<a href="https://wa.me/212600000000" class="fab-wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.2-.3.4-.1.7.1.3.7 1.1 1.4 1.8.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.2 1.3z"/></svg>
+</a>
+<button class="to-top" aria-label="Haut de page" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<div class="cookie">
+  <p>Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre politique.</p>
+  <button class="btn btn-primary btn-sm" data-cookie-accept>Accepter</button>
+</div>
+<script src="js/tangercode.js"></script>
+<script>(function(){var tl=document.getElementById('timeline');if(tl){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){tl.style.setProperty('--tl','100%');o.unobserve(tl);}})},{threshold:0.3});o.observe(tl);}})();</script>
+</body>
+</html>

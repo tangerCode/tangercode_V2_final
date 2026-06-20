@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+
+# Production build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.local.example
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+next-env.d.ts

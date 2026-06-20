@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "TANGER CODE — Développement web & mobile sur mesure",
+    "description": "Sites web, plateformes, ERP et applications mobiles sur mesure. Basé à Tanger, déployé dans le monde."
+  },
+  "home": {
+    "subtitle": "Sites web, plateformes, ERP et applications mobiles sur mesure. Basé à Tanger, déployé dans le monde.",
+    "comingSoon": "Bientôt disponible"
+  },
+  "common": {
+    "language": "Langue",
+    "theme": "Thème",
+    "dark": "Sombre",
+    "light": "Clair"
+  }
+}

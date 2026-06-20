@@ -1,0 +1,169 @@
+# =============================================================================
+# TANGER CODE — Docker Compose (Development)
+# Start: docker-compose up
+# Stop:  docker-compose down
+# Clean: docker-compose down -v
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # PostgreSQL 16
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: tangercode-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tangercode}
+      POSTGRES_USER: ${POSTGRES_USER:-tangercode}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tangercode_dev_pwd}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tangercode} -d ${POSTGRES_DB:-tangercode}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tangercode-net
+
+  # ---------------------------------------------------------------------------
+  # Redis 7
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: tangercode-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tangercode-net
+
+  # ---------------------------------------------------------------------------
+  # Django Backend (hot reload with runserver)
+  # ---------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./tangercode-backend
+      dockerfile: Dockerfile
+      target: dev
+    container_name: tangercode-backend
+    restart: unless-stopped
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./tangercode-backend:/app
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - tangercode-net
+
+  # ---------------------------------------------------------------------------
+  # Celery Worker (async tasks) — will be enabled in P5
+  # ---------------------------------------------------------------------------
+  # celery_worker:
+  #   build:
+  #     context: ./tangercode-backend
+  #     dockerfile: Dockerfile
+  #     target: dev
+  #   container_name: tangercode-celery-worker
+  #   restart: unless-stopped
+  #   command: celery -A config worker -l info -c 2
+  #   volumes:
+  #     - ./tangercode-backend:/app
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=config.settings.dev
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - tangercode-net
+
+  # ---------------------------------------------------------------------------
+  # Celery Beat (periodic tasks scheduler) — will be enabled in P5
+  # ---------------------------------------------------------------------------
+  # celery_beat:
+  #   build:
+  #     context: ./tangercode-backend
+  #     dockerfile: Dockerfile
+  #     target: dev
+  #   container_name: tangercode-celery-beat
+  #   restart: unless-stopped
+  #   command: celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+  #   volumes:
+  #     - ./tangercode-backend:/app
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=config.settings.dev
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - tangercode-net
+
+  # ---------------------------------------------------------------------------
+  # Next.js Frontend (hot reload with npm run dev)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./tangercode-frontend
+      dockerfile: Dockerfile
+      target: dev
+    container_name: tangercode-frontend
+    restart: unless-stopped
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./tangercode-frontend:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    environment:
+      - NEXT_TELEMETRY_DISABLED=1
+    depends_on:
+      - backend
+    networks:
+      - tangercode-net
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  postgres_data:
+    name: tangercode-postgres-data
+  redis_data:
+    name: tangercode-redis-data
+
+# =============================================================================
+# Network
+# =============================================================================
+networks:
+  tangercode-net:
+    name: tangercode-net
+    driver: bridge

@@ -128,10 +128,10 @@ Le développement suit 23 phases séquentielles (P0 → P23) documentées dans
 `../docs/cahier_de_conception_tanger_code.md` (section 8). Chaque phase contient 
 son propre prompt détaillé à suivre.
 
-**Phase courante** : P2 — Backend : Modèles & Admin Django
+**Phase courante** : P3 — Backend : API publique
 - [x] P0 — Setup repositories & Docker
 - [x] P1 — Backend : Django + DB + Auth JWT
-- [ ] P2 — Backend : Modèles & Admin Django
+- [x] P2 — Backend : Modèles & Admin Django
 - [ ] P3 — Backend : API publique
 - [ ] P4 — Backend : API admin (CRUD)
 - [ ] P5 — Backend : Traduction IA Claude + Celery

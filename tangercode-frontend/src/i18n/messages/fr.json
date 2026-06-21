@@ -25,7 +25,7 @@
     "email": "contact@tangercode.ma",
     "phone": "+212 6 00 00 00 00",
     "location": "Tanger, Maroc",
-    "copyright": "© 2025 TANGER CODE — Tous droits réservés.",
+    "copyright": "© 2026 TANGER CODE. Made with ❤️ in Tangier.",
     "legal": "Mentions légales",
     "privacy": "Confidentialité"
   },
@@ -48,7 +48,19 @@
   },
   "cookie": {
     "message": "Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre politique.",
-    "accept": "Accepter"
+    "acceptAll": "Accepter tous",
+    "refuse": "Refuser",
+    "customize": "Personnaliser",
+    "customizeTitle": "Personnaliser les cookies",
+    "customizeDesc": "Gérez vos préférences de cookies.",
+    "essential": "Essentiels",
+    "essentialDesc": "Nécessaires au fonctionnement du site.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Nous aident à améliorer le site.",
+    "marketing": "Marketing",
+    "marketingDesc": "Pour des publicités personnalisées.",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
   },
   "contact": {
     "title": "Contact",

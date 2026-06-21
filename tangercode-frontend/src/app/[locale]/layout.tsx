@@ -5,6 +5,12 @@ import { ThemeProvider } from "next-themes";
 import { routing } from "@/i18n/routing";
 import { inter, jetbrainsMono, cairo } from "../fonts";
 import { ThemeDataAttribute } from "@/components/layout/ThemeDataAttribute";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { BackToTopButton } from "@/components/layout/BackToTopButton";
+import { CookieBanner } from "@/components/layout/CookieBanner";
+import { Toaster } from "@/components/ui/toaster";
 import "../globals.css";
 import "../tangercode.css";
 
@@ -84,7 +90,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         >
           <ThemeDataAttribute />
           <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+            <BackToTopButton />
+            <CookieBanner />
+            <Toaster />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

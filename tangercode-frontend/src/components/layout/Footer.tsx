@@ -2,11 +2,13 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { footerServices, footerCompany, footerContact, footerLegal } from "@/lib/navigation";
 import { Linkedin, Instagram, Facebook } from "lucide-react";
+import { NewsletterForm } from "@/components/shared/NewsletterForm";
 
 export function Footer() {
   const tNav = useTranslations("nav");
   const tNavSvc = useTranslations("navServices");
   const tFooter = useTranslations("footer");
+  const tNews = useTranslations("newsletter");
 
   const serviceLabels: Record<string, string> = {
     "services.websites": tNavSvc("websites"),
@@ -65,8 +67,18 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Newsletter */}
+        <div className="mt-12 mb-8 border-t border-[var(--border-soft)] pt-10">
+          <h5 className="mb-4 text-xs uppercase tracking-[0.1em] text-[var(--text-muted)] font-mono font-medium">
+            {tNews("title")}
+          </h5>
+          <div className="max-w-md">
+            <NewsletterForm />
+          </div>
+        </div>
+
         <div className="footer-bottom">
-          <span>{tFooter("copyright")}</span>
+          <span>© 2026 TANGER CODE. Made with ❤️ in Tangier.</span>
           <div className="social">
             <a href="#" className="icon-btn" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />

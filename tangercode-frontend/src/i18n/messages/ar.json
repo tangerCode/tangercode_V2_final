@@ -25,7 +25,7 @@
     "email": "contact@tangercode.ma",
     "phone": "+212 6 00 00 00 00",
     "location": "طنجة، المغرب",
-    "copyright": "© 2025 TANGER CODE — جميع الحقوق محفوظة.",
+    "copyright": "© 2026 TANGER CODE. Made with ❤️ in Tangier.",
     "legal": "إشعار قانوني",
     "privacy": "سياسة الخصوصية"
   },
@@ -48,7 +48,19 @@
   },
   "cookie": {
     "message": "نستخدم ملفات تعريف الارتباط لتحسين تجربتك. بالمتابعة، أنت توافق على سياستنا.",
-    "accept": "قبول"
+    "acceptAll": "قبول الكل",
+    "refuse": "رفض",
+    "customize": "تخصيص",
+    "customizeTitle": "تخصيص ملفات تعريف الارتباط",
+    "customizeDesc": "إدارة تفضيلات ملفات تعريف الارتباط.",
+    "essential": "أساسية",
+    "essentialDesc": "ضرورية لعمل الموقع.",
+    "analytics": "تحليلات",
+    "analyticsDesc": "تساعدنا على تحسين الموقع.",
+    "marketing": "تسويق",
+    "marketingDesc": "للإعلانات المخصصة.",
+    "save": "حفظ",
+    "cancel": "إلغاء"
   },
   "contact": {
     "title": "اتصل بنا",

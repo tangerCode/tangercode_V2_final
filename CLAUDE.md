@@ -128,7 +128,7 @@ Le développement suit 23 phases séquentielles (P0 → P23) documentées dans
 `../docs/cahier_de_conception_tanger_code.md` (section 8). Chaque phase contient 
 son propre prompt détaillé à suivre.
 
-**Phase courante** : P9 — Frontend : Composants UI globaux
+**Phase courante** : P10 — Frontend : Scène 3D Architecte du Code
 - [x] P0 — Setup repositories & Docker
 - [x] P1 — Backend : Django + DB + Auth JWT
 - [x] P2 — Backend : Modèles & Admin Django
@@ -141,7 +141,7 @@ son propre prompt détaillé à suivre.
 - [ ] P6 — Backend : Contact, Emails, reCAPTCHA
 - [ ] P7 — Backend : Intégration GA4
 - [x] P8 — Frontend : Setup Next.js + Tailwind + Shadcn + i18n
-- [ ] P9 — Frontend : Composants UI globaux
+- [x] P9 — Frontend : Composants UI globaux
 - [ ] P10 — Frontend : Scène 3D Architecte du Code
 - [ ] P11 — Frontend : Page d'accueil complète
 - [ ] P12 — Frontend : Pages Services

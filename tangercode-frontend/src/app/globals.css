@@ -2,48 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================================
-   TANGER CODE — Global Styles
-   Mediterranean Tech palette — Dark mode default
-   ============================================================ */
-
 @layer base {
   :root {
-    --radius-sm: 12px;
+    --background: 228 18% 9%;
+    --foreground: 210 25% 98%;
+    --card: 228 18% 13%;
+    --card-foreground: 210 25% 98%;
+    --popover: 228 18% 13%;
+    --popover-foreground: 210 25% 98%;
+    --primary: 216 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 15% 16%;
+    --secondary-foreground: 210 25% 98%;
+    --muted: 215 20% 65%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 228 18% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 190 100% 50%;
     --radius: 18px;
-    --radius-lg: 24px;
-    --radius-xl: 32px;
-    --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  }
 
-  .dark {
-    --bg-base: #0A1628;
-    --bg-surface: #0F1F3D;
-    --bg-elevated: #15264A;
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
-    --border-color: #1E3A5F;
-    --border-soft: rgba(30, 58, 95, 0.5);
+    --font-display: "Cabinet Grotesk", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
     color-scheme: dark;
   }
 
   .light {
-    --bg-base: #F8FAFC;
-    --bg-surface: #FFFFFF;
-    --bg-elevated: #F1F5F9;
-    --text-primary: #0F172A;
-    --text-secondary: #64748B;
-    --text-muted: #94A3B8;
-    --border-color: #E2E8F0;
-    --border-soft: rgba(226, 232, 240, 0.8);
+    --background: 220 20% 89%;
+    --foreground: 217 33% 17%;
+    --card: 220 20% 89%;
+    --card-foreground: 217 33% 17%;
+    --popover: 220 20% 89%;
+    --popover-foreground: 217 33% 17%;
+    --primary: 216 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 93%;
+    --secondary-foreground: 217 33% 17%;
+    --muted: 215 16% 47%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 228 18% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0% / 0.05;
+    --input: 0 0% 0% / 0.05;
+    --ring: 216 100% 40%;
 
     color-scheme: light;
-  }
-
-  * {
-    @apply border-[var(--border-color)];
   }
 
   html {
@@ -51,12 +61,17 @@
   }
 
   body {
-    @apply bg-[var(--bg-base)] text-[var(--text-primary)] font-body;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
   .grad-text {
-    @apply bg-gradient-to-r from-primary-500 to-cyan bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(216, 100%, 40%), hsl(190, 100%, 50%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 }

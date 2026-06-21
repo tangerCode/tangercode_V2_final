@@ -1,11 +1,5 @@
 import { Inter, JetBrains_Mono, Cairo } from "next/font/google";
 
-const cabinetGrotesk = {
-  variable: "--font-cabinet",
-  className: "",
-  style: { fontFamily: "'Cabinet Grotesk', system-ui, sans-serif" },
-};
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -24,4 +18,4 @@ const cairo = Cairo({
   display: "swap",
 });
 
-export { cabinetGrotesk, inter, jetbrainsMono, cairo };
+export { inter, jetbrainsMono, cairo };

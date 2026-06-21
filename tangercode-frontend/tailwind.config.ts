@@ -6,41 +6,78 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
         primary: {
-          "50": "#EBF2FF",
-          "100": "#C5DBFF",
-          "200": "#9EC5FF",
-          "300": "#6BA8FF",
-          "400": "#3385FF",
-          "500": "#0052CC",
-          "600": "#004BB8",
-          "700": "#003D99",
-          "800": "#002F75",
-          "900": "#001F4D",
-          DEFAULT: "#0052CC",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        cyan: {
-          DEFAULT: "#00D4FF",
-        },
-        coral: {
-          DEFAULT: "#FF6B35",
-        },
-        dark: {
-          base: "#0A1628",
-          surface: "#0F1F3D",
-          elevated: "#15264A",
-        },
-        light: {
-          base: "#F8FAFC",
-          surface: "#FFFFFF",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
-          dark: "#94A3B8",
-          light: "#64748B",
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
-        border: {
-          dark: "#1E3A5F",
-          light: "#E2E8F0",
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        brand: {
+          primary: {
+            "50": "#EBF2FF",
+            "100": "#C5DBFF",
+            "200": "#9EC5FF",
+            "300": "#6BA8FF",
+            "400": "#3385FF",
+            "500": "#0052CC",
+            "600": "#004BB8",
+            "700": "#003D99",
+            "800": "#002F75",
+            "900": "#001F4D",
+            DEFAULT: "#0052CC",
+          },
+          cyan: {
+            DEFAULT: "#00D4FF",
+          },
+          coral: {
+            DEFAULT: "#FF6B35",
+          },
+        },
+        maquette: {
+          dark: {
+            base: "#13141C",
+            surface: "#1A1B26",
+            elevated: "#22232E",
+          },
+          light: {
+            base: "#E0E5EC",
+            surface: "#E0E5EC",
+          },
+          muted: {
+            dark: "#94A3B8",
+            light: "#475569",
+          },
+          border: {
+            dark: "rgba(255, 255, 255, 0.08)",
+            light: "rgba(0, 0, 0, 0.05)",
+          },
         },
         success: "#10B981",
         error: "#EF4444",
@@ -48,7 +85,7 @@ const config: Config = {
         info: "#3B82F6",
       },
       fontFamily: {
-        display: ["var(--font-cabinet)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
         arabic: ["var(--font-cairo)", "Tajawal", "sans-serif"],
@@ -59,7 +96,6 @@ const config: Config = {
         morph: "morph 3s ease-in-out infinite",
         "gradient-shift": "gradient-shift 4s ease infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out",
-        pulse: "pulse 600ms var(--ease-spring)",
       },
       keyframes: {
         glow: {

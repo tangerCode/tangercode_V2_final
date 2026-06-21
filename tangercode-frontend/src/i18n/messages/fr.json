@@ -7,10 +7,70 @@
     "subtitle": "Sites web, plateformes, ERP et applications mobiles sur mesure. Basé à Tanger, déployé dans le monde.",
     "comingSoon": "Bientôt disponible"
   },
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "pricing": "Tarifs",
+    "about": "À propos",
+    "blog": "Blog",
+    "contact": "Contact",
+    "startProject": "Démarrer un projet"
+  },
+  "footer": {
+    "tagline": "Développement web & mobile sur mesure. Basé à Tanger, déployé dans le monde.",
+    "services": "Services",
+    "company": "Entreprise",
+    "contact": "Contact",
+    "email": "contact@tangercode.ma",
+    "phone": "+212 6 00 00 00 00",
+    "location": "Tanger, Maroc",
+    "copyright": "© 2025 TANGER CODE — Tous droits réservés.",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité"
+  },
+  "navServices": {
+    "websites": "Sites web",
+    "platforms": "Plateformes web",
+    "erp": "ERP sur mesure",
+    "mobile": "Applications mobiles"
+  },
   "common": {
     "language": "Langue",
     "theme": "Thème",
     "dark": "Sombre",
-    "light": "Clair"
+    "light": "Clair",
+    "backToTop": "Haut de page",
+    "close": "Fermer",
+    "loading": "Chargement...",
+    "send": "Envoyer",
+    "accept": "Accepter"
+  },
+  "cookie": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre politique.",
+    "accept": "Accepter"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Discutons de votre projet",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "company": "Entreprise",
+    "service": "Service intéressé",
+    "subject": "Sujet",
+    "message": "Message",
+    "submit": "Envoyer le message",
+    "success": "Message envoyé avec succès !",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "placeholder": "votre@email.com",
+    "subscribe": "S'inscrire",
+    "success": "Inscription confirmée !"
+  },
+  "share": {
+    "title": "Partager"
   }
 }

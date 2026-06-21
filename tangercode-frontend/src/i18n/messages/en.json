@@ -7,10 +7,70 @@
     "subtitle": "Custom websites, platforms, ERP and mobile applications. Based in Tangier, deployed worldwide.",
     "comingSoon": "Coming Soon"
   },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "pricing": "Pricing",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "startProject": "Start a project"
+  },
+  "footer": {
+    "tagline": "Custom web & mobile development. Based in Tangier, deployed worldwide.",
+    "services": "Services",
+    "company": "Company",
+    "contact": "Contact",
+    "email": "contact@tangercode.ma",
+    "phone": "+212 6 00 00 00 00",
+    "location": "Tangier, Morocco",
+    "copyright": "© 2025 TANGER CODE — All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  },
+  "navServices": {
+    "websites": "Websites",
+    "platforms": "Web platforms",
+    "erp": "Custom ERP",
+    "mobile": "Mobile apps"
+  },
   "common": {
     "language": "Language",
     "theme": "Theme",
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "backToTop": "Back to top",
+    "close": "Close",
+    "loading": "Loading...",
+    "send": "Send",
+    "accept": "Accept"
+  },
+  "cookie": {
+    "message": "We use cookies to improve your experience. By continuing, you accept our policy.",
+    "accept": "Accept"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's discuss your project",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "service": "Interested service",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send message",
+    "success": "Message sent successfully!",
+    "error": "An error occurred. Please try again."
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "placeholder": "your@email.com",
+    "subscribe": "Subscribe",
+    "success": "Subscription confirmed!"
+  },
+  "share": {
+    "title": "Share"
   }
 }

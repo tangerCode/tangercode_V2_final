@@ -114,6 +114,14 @@
     linear-gradient(180deg, transparent 60%, var(--bg-base) 98%);
 }
 
+.hero-inner {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  text-align: center;
+  padding-block: 112px 108px;
+}
+
 .hero h1 {
   margin: 22px auto 24px;
   max-width: 14ch;

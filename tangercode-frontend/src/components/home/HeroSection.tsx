@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Scene3DLoader } from "@/components/3d/Scene3DLoader";
-import { fadeIn } from "@/lib/animations";
 import type { HomeData } from "@/lib/home-data";
 
 const BITS = ["<>", "{ }", "( )", "=>", "01", "fn", "</>", "[ ]", "::", "&&", "404", "git"];
@@ -35,7 +34,12 @@ export function HeroSection({ data }: { data: HomeData }) {
       <div className="code-bits" aria-hidden="true" ref={codeBitsRef} />
       <div className="hero-veil" />
 
-      <motion.div className="container hero-inner" variants={fadeIn} initial="hidden" animate="visible">
+      <motion.div
+        className="container hero-inner"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <p className="eyebrow" dangerouslySetInnerHTML={{ __html: data.heroEyebrow }} />
         <h1 className="h-hero">
           {data.heroTitlePart1}

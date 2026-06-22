@@ -49,6 +49,7 @@ export function CodeArchitectScene() {
       style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
     >
       <Canvas
+        id="hero3d"
         camera={{ fov: 55, near: 0.1, far: 100, position: [0, 2.6, 8] }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}

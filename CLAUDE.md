@@ -128,7 +128,7 @@ Le développement suit 23 phases séquentielles (P0 → P23) documentées dans
 `../docs/cahier_de_conception_tanger_code.md` (section 8). Chaque phase contient 
 son propre prompt détaillé à suivre.
 
-**Phase courante** : P12 — Frontend : Pages Services
+**Phase courante** : P13 — Frontend : Pages Portfolio
 - [x] P0 — Setup repositories & Docker
 - [x] P1 — Backend : Django + DB + Auth JWT
 - [x] P2 — Backend : Modèles & Admin Django
@@ -144,7 +144,7 @@ son propre prompt détaillé à suivre.
 - [x] P9 — Frontend : Composants UI globaux
 - [x] P10 — Frontend : Scène 3D Architecte du Code
 - [x] P11 — Frontend : Page d'accueil complete
-- [ ] P12 — Frontend : Pages Services
+- [x] P12 — Frontend : Pages Services
 - [ ] P13 — Frontend : Pages Portfolio
 - [ ] P14 — Frontend : Page Tarifs
 - [ ] P15 — Frontend : Blog

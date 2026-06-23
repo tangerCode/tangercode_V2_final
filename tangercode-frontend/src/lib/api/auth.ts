@@ -9,8 +9,8 @@ import type {
 
 export async function login(
   data: LoginRequest,
-): Promise<ApiResponse<LoginResponse>> {
-  const response = await client.post<ApiResponse<LoginResponse>>(
+): Promise<LoginResponse> {
+  const response = await client.post<LoginResponse>(
     "/admin/auth/login/",
     data,
   );

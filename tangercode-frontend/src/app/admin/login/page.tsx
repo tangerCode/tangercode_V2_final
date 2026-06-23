@@ -48,11 +48,10 @@ export default function LoginPage() {
 
     setIsSubmitting(true);
     try {
-      const response = await loginApi({
+      const { access, refresh, user } = await loginApi({
         email: data.email,
         password: data.password,
       });
-      const { access, refresh, user } = response.data;
 
       await fetch("/api/auth/set-cookie", {
         method: "POST",

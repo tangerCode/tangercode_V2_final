@@ -148,7 +148,7 @@ son propre prompt détaillé à suivre.
 - [x] P13 — Frontend : Pages Portfolio
 - [x] P14 — Frontend : Page Tarifs
 - [x] P15 — Frontend : Blog
-- [ ] P16 — Frontend : Pages additionnelles
+- [x] P16 — Frontend : Pages additionnelles
 - [ ] P17 — Frontend : Dashboard Admin (auth + layout)
 - [ ] P18 — Frontend : Modules admin (CRUD contenus)
 - [ ] P19 — Frontend : Modules admin (analytics, config, IA)

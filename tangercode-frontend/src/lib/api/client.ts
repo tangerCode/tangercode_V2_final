@@ -5,7 +5,7 @@ import axios, {
 import { API_BASE_URL } from "@/lib/constants";
 import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
-import type { ApiError, ApiResponse, RefreshResponse } from "./types";
+import type { ApiError } from "./types";
 
 const client = axios.create({
   baseURL: API_BASE_URL,
@@ -29,7 +29,13 @@ function processQueue(error: unknown, token: string | null = null) {
   failedQueue = [];
 }
 
-// --- Request interceptor ---
+function getRefreshUrl(): string {
+  if (typeof window === "undefined") {
+    return `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/auth/refresh`;
+  }
+  return "/api/auth/refresh";
+}
+
 client.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const { accessToken } = useAuthStore.getState();
@@ -45,7 +51,6 @@ client.interceptors.request.use(
   (error: unknown) => Promise.reject(error),
 );
 
-// --- Response interceptor ---
 client.interceptors.response.use(
   (response) => response,
   async (error: AxiosError<ApiError>) => {
@@ -74,22 +79,20 @@ client.interceptors.response.use(
     originalRequest._retry = true;
     isRefreshing = true;
 
-    const { refreshToken: storedRefresh } = useAuthStore.getState();
-
-    if (!storedRefresh) {
-      useAuthStore.getState().logout();
-      isRefreshing = false;
-      return Promise.reject(error);
-    }
-
     try {
-      const { data } = await axios.post<ApiResponse<RefreshResponse>>(
-        `${API_BASE_URL}/auth/refresh/`,
-        { refresh: storedRefresh },
-      );
-      const newAccess = data.data.access;
-      useAuthStore.getState().setTokens(newAccess, storedRefresh);
+      const response = await fetch(getRefreshUrl(), { method: "GET" });
 
+      if (!response.ok) {
+        useAuthStore.getState().logout();
+        processQueue(new Error("Refresh failed"), null);
+        isRefreshing = false;
+        return Promise.reject(error);
+      }
+
+      const data = await response.json();
+      const newAccess = data.access;
+
+      useAuthStore.getState().updateAccessToken(newAccess);
       processQueue(null, newAccess);
 
       if (originalRequest.headers) {
@@ -99,9 +102,8 @@ client.interceptors.response.use(
     } catch (refreshError) {
       processQueue(refreshError, null);
       useAuthStore.getState().logout();
-      return Promise.reject(refreshError);
-    } finally {
       isRefreshing = false;
+      return Promise.reject(refreshError);
     }
   },
 );

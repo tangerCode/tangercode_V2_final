@@ -42,7 +42,7 @@ export async function GET(request: Request) {
     const response = NextResponse.json({ access: newAccess });
     response.cookies.set(COOKIE_NAME, newRefresh, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: request.url.startsWith("https"),
       sameSite: "lax",
       path: "/",
       maxAge: MAX_AGE,

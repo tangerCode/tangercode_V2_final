@@ -149,7 +149,7 @@ son propre prompt détaillé à suivre.
 - [x] P14 — Frontend : Page Tarifs
 - [x] P15 — Frontend : Blog
 - [x] P16 — Frontend : Pages additionnelles
-- [ ] P17 — Frontend : Dashboard Admin (auth + layout)
+- [x] P17 — Frontend : Dashboard Admin (auth + layout)
 - [ ] P18 — Frontend : Modules admin (CRUD contenus)
 - [ ] P19 — Frontend : Modules admin (analytics, config, IA)
 - [ ] P20 — SEO & Performance (Lighthouse > 90)

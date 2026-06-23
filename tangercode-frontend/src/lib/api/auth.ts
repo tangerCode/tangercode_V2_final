@@ -11,7 +11,7 @@ export async function login(
   data: LoginRequest,
 ): Promise<ApiResponse<LoginResponse>> {
   const response = await client.post<ApiResponse<LoginResponse>>(
-    "/auth/login/",
+    "/admin/auth/login/",
     data,
   );
   return response.data;
@@ -21,7 +21,7 @@ export async function refresh(
   refreshToken: string,
 ): Promise<ApiResponse<RefreshResponse>> {
   const response = await client.post<ApiResponse<RefreshResponse>>(
-    "/auth/refresh/",
+    "/admin/auth/refresh/",
     { refresh: refreshToken },
   );
   return response.data;
@@ -30,7 +30,7 @@ export async function refresh(
 export async function logout(): Promise<void> {
   const currentRefreshToken = useAuthStore.getState().refreshToken;
   if (currentRefreshToken) {
-    await client.post("/auth/logout/", { refresh: currentRefreshToken });
+    await client.post("/admin/auth/logout/", { refresh: currentRefreshToken });
   }
   useAuthStore.getState().logout();
 }
@@ -40,6 +40,6 @@ export async function getMe(): Promise<
 > {
   const response = await client.get<
     ApiResponse<LoginResponse["user"]>
-  >("/auth/me/");
+  >("/admin/auth/me/");
   return response.data;
 }

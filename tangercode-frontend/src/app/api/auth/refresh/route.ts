@@ -20,7 +20,7 @@ export async function GET(request: Request) {
   const refreshToken = cookie.slice(COOKIE_NAME.length + 1);
 
   try {
-    const djangoResponse = await fetch(`${API_BASE_URL}/auth/refresh/`, {
+    const djangoResponse = await fetch(`${API_BASE_URL}/admin/auth/refresh/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ refresh: refreshToken }),
